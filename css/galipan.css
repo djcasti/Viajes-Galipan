@@ -1,0 +1,60 @@
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background: #92b93e; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#385468, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#385468, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#385468, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#385468, white); /* Standard syntax */
+}
+
+.container {
+	/*width: 80%;
+	height: 80%;
+	margin: 0 auto;*/
+	background-color: white;
+}
+
+.logo {
+	position: relative;
+	width: 200px;
+	height: 120px;
+	background: url("../images/viajes_galipan_logo.png") 0% 0% / contain no-repeat;
+}
+
+.menu {
+	position: absolute;
+	top: 10px;
+	left: 70%;	
+}
+
+.menu ul {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.menu li {
+    float: left;
+}
+
+.menu li .fa-li {
+    position: static;
+}
+
+.menu li a {
+	display: inline-block;
+    width: auto;
+}
+
+.titulo {
+	position: absolute;
+	top: 50px;
+	left: 350px;
+	color: #92b93e;
+}
