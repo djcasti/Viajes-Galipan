@@ -17,6 +17,11 @@
 			$query = $this->queryList("SELECT id_ciudad, nombre FROM ciudad WHERE id_estado = :idEstado", [':idEstado' => $idEstado]);
 			return $query->fetchAll(PDO::FETCH_ASSOC);			
 		}
+
+		public function getBancos($idPais) {
+			$query = $this->queryList("SELECT id_banco, nombre FROM banco WHERE id_pais = :idPais", [':idPais' => $idPais]);	
+			return $query->fetchAll(PDO::FETCH_ASSOC);			
+		}
 	}
 
 	$db = new MainGalipan();
@@ -35,6 +40,10 @@
 
 			case 'getCiudades':
 				$result = $db->getCiudades($_GET['idEstado']);
+				break;
+
+			case 'getBancos':
+				$result = $db->getBancos($_GET['idPais']);
 				break;
 
 			default:
