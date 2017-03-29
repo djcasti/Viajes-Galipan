@@ -75,4 +75,41 @@ $(document).ready(function() {
 		});
 	};
 
+	$("#btnGuadrar").on('click', function() {
+		var transactionData = {
+			'remitente': {
+				'fisrtName': $("#senderFirstName").val(),
+				'lastName': $("#senderLastName").val(),
+				'idNumber': $("#senderIdNumber").val(),
+				'phone': $("#senderPhone").val(),
+				'country': $("#senderCountry").val(),
+				'bank': $("#senderBank").val(),
+				'transferNumber': $("#senderTransferNumber").val()
+			},
+			'destinatario': {
+				'fisrtName': $("#receiverFirstName").val(),
+				'lastName': $("#receiverLastName").val(),
+				'idNumber': $("#receiverIdNumber").val(),
+				'phone': $("#receiverPhone").val(),
+				'country': $("#receiverCountry").val(),
+				'bank': $("#receiverBank").val(),
+				'accountNumber': $("#receiverAccountNumber").val()
+			},
+			'transaccion': {
+				'amountSent': $("#tranxAmountSent").val(),
+				'amountReceived': $("#tranxAmountReceived").val()
+			}
+		};
+	
+		console.log(data);
+
+		$.ajax({
+			url: "Galipan.php",
+			dataType: 'json',
+			data: { "option": "guardarTransaccion", 'data': transactionData}
+		}).done(function(result) {
+			console.log(result);
+		});
+	});
+
 });	

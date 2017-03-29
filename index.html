@@ -29,7 +29,7 @@
 				</div>
 			</div>
 		</nav>
-		<form class="form-horizontal">
+		<div class="form-horizontal">
 			<div class="panel panel-default panel-primary">
 				<div class="panel-heading">
 				    <h3 class="panel-title">Datos del Remitente</h3>
@@ -83,40 +83,40 @@
 				<div class="panel-body">
 					<div class="form-group">
 						<div class="col-md-4">
-							<label for="reciverFirstName">Nombres</label>
-	    					<input type="text" class="form-control" id="reciverFirstName" placeholder="">
+							<label for="receiverFirstName">Nombres</label>
+	    					<input type="text" class="form-control" id="receiverFirstName" placeholder="">
 						</div>
 						<div  class="col-md-4">
-	    					<label for="reciverLastName">Apellidos</label>
-	    					<input type="text" class="form-control" id="reciverLastName" placeholder="">
+	    					<label for="receiverLastName">Apellidos</label>
+	    					<input type="text" class="form-control" id="receiverLastName" placeholder="">
     					</div>
     					<div  class="col-md-4">
-	    					<label for="reciverIdNumber">Nro. Documento de Identidad</label>
-	    					<input type="text" class="form-control" id="reciverIdNumber" placeholder="">
+	    					<label for="receiverIdNumber">Nro. Documento de Identidad</label>
+	    					<input type="text" class="form-control" id="receiverIdNumber" placeholder="">
     					</div>
 					</div>	
 					<div class="form-group">
 						<div class="col-md-4">
-							<label for="reciverPhone">Tel&eacute;fono</label>
-	    					<input type="text" class="form-control" id="reciverPhone" placeholder="">
+							<label for="receiverPhone">Tel&eacute;fono</label>
+	    					<input type="text" class="form-control" id="receiverPhone" placeholder="">
 						</div>
 						<div  class="col-md-4">
-	    					<label for="reciverCountry">Pa&iacute;s</label>
-	    					<select class="form-control" id="reciverCountry"></select>
+	    					<label for="receiverCountry">Pa&iacute;s</label>
+	    					<select class="form-control" id="receiverCountry"></select>
     					</div>
     					<div  class="col-md-4">
-	    					<label for="reciverState">Estado</label>
-	    					<select class="form-control" id="reciverState"></select>
+	    					<label for="receiverState">Estado</label>
+	    					<select class="form-control" id="receiverState"></select>
     					</div>
 					</div>
 					<div class="form-group">
 						<div  class="col-md-4">
-	    					<label for="reciverCity">Ciudad</label>
-	    					<select class="form-control" id="reciverCity"></select>
+	    					<label for="receiverCity">Ciudad</label>
+	    					<select class="form-control" id="receiverCity"></select>
     					</div>
 						<div class="col-md-8">
-							<label for="reciverAddress">Direcci&oacute;n</label>
-	    					<input type="text" class="form-control" id="reciverAddress" placeholder="">
+							<label for="receiverAddress">Direcci&oacute;n</label>
+	    					<input type="text" class="form-control" id="receiverAddress" placeholder="">
 						</div>						
 					</div>
 				</div>
@@ -133,22 +133,22 @@
 	    					<select class="form-control" id="senderBank"></select>
     					</div>
     					<div class="col-md-4">
-							<label for="tranxTransferNumber">Nro. de Transferencia</label>
-	    					<input type="text" class="form-control" id="tranxTransferNumber" placeholder="">
+							<label for="senderTransferNumber">Nro. de Transferencia</label>
+	    					<input type="text" class="form-control" id="senderTransferNumber" placeholder="">
 						</div>
 						<div class="col-md-4">
-							<label for="tranxAmountSended">Monto enviado</label>
-	    					<input type="text" class="form-control" id="tranxAmountSended" placeholder="">
+							<label for="tranxAmountSent">Monto enviado</label>
+	    					<input type="text" class="form-control" id="tranxAmountSent" placeholder="">
 						</div>
 					</div>
 					<div class="form-group">						
 						<div  class="col-md-4">
-	    					<label for="reciverBank">Banco Destino</label>
-	    					<select class="form-control" id="reciverBank"></select>
+	    					<label for="receiverBank">Banco Destino</label>
+	    					<select class="form-control" id="receiverBank"></select>
     					</div>
     					<div class="col-md-4">
-							<label for="tranxAcountNumber">Nro. de Cuenta</label>
-	    					<input type="text" class="form-control" id="tranxAcountNumber" placeholder="">
+							<label for="receiverAccountNumber">Nro. de Cuenta</label>
+	    					<input type="text" class="form-control" id="receiverAccountNumber" placeholder="">
 						</div>
 						<div class="col-md-4">
 							<label for="tranxAmountReceived">Monto a recibir</label>
@@ -159,10 +159,11 @@
 			</div>
 
 			<div class="container text-center">
-				<button class="btn btn-primary btn-lg">Guardar remesa</button>
+				<button id="btnGuadrar" class="btn btn-success btn-lg">Guardar remesa</button>
 				<button class="btn btn-default btn-lg">Cancelar</button>
 			</div>
-		</form>
+			<br>
+		</div>
 	</div>		
 </body>
 </html>
