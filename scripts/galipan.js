@@ -82,7 +82,8 @@ $(document).ready(function() {
 				'lastName': $("#senderLastName").val(),
 				'idNumber': $("#senderIdNumber").val(),
 				'phone': $("#senderPhone").val(),
-				'country': $("#senderCountry").val(),
+				'city': $("#senderCity").val(),
+				'address': $("#senderAddress").val(),
 				'bank': $("#senderBank").val(),
 				'transferNumber': $("#senderTransferNumber").val()
 			},
@@ -91,7 +92,8 @@ $(document).ready(function() {
 				'lastName': $("#receiverLastName").val(),
 				'idNumber': $("#receiverIdNumber").val(),
 				'phone': $("#receiverPhone").val(),
-				'country': $("#receiverCountry").val(),
+				'city': $("#receiverCity").val(),
+				'address': $("#receiverAddress").val(),
 				'bank': $("#receiverBank").val(),
 				'accountNumber': $("#receiverAccountNumber").val()
 			},
@@ -101,7 +103,7 @@ $(document).ready(function() {
 			}
 		};
 	
-		console.log(data);
+		//console.log(transactionData);
 
 		$.ajax({
 			url: "Galipan.php",

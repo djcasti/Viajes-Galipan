@@ -5,6 +5,8 @@
         const HOST="localhost";
         const DB="galipandb";
 
+        protected $connection = null;
+
         private function getConnection(){
             $username = self::USERNAME;
             $password = self::PASSWORD;
@@ -12,8 +14,7 @@
             $db = self::DB;
 
             try {
-            	$connection = new PDO("mysql:dbname=$db;host=$host;charset=utf8", $username, $password);
-            	return $connection;
+            	$this->connection = new PDO("mysql:dbname=$db;host=$host;charset=utf8", $username, $password);
             }
             catch (PDOException $e) {
 				echo $e->getMessage();
@@ -21,9 +22,9 @@
         }
         
         protected function queryList($sql, $args){
-            $connection = $this->getConnection();
-            $stmt = $connection->prepare($sql);
-            $stmt->execute($args) or die(print_r($stmt->errorInfo(), true));
+            $this->getConnection();
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute($args);
             return $stmt;            
         }
     }
