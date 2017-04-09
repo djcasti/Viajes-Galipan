@@ -23,10 +23,20 @@
 			return $query->fetchAll(PDO::FETCH_ASSOC);			
 		}
 
+		public function getCurrency() {
+			$query = $this->queryList("SELECT id_moneda, nombre, codigo FROM moneda", []);	
+			return $query->fetchAll(PDO::FETCH_ASSOC);			
+		}
+
+		public function getExchange($idCurrency) {
+			$query = $this->queryList("SELECT id_tasa, monto FROM tasa_cambio where id_moneda = :idCurrency", [':idCurrency' => $idCurrency]);	
+			return $query->fetchAll(PDO::FETCH_ASSOC);			
+		}
+
 		public function guardarTransaccion($data) {
-			var_dump($data['remitente']);
-			var_dump($data['destinatario']);
-			var_dump($data['transaccion']);
+		// 	var_dump($data['remitente']);
+		// 	var_dump($data['destinatario']);
+		// 	var_dump($data['transaccion']);
 
 			$rem = $data['remitente'];
 			$des = $data['destinatario'];
@@ -43,9 +53,14 @@
 					$receiverId = $this->connection->lastInsertId();
 
 					$query = $this->queryList("INSERT INTO `transaccion` (`monto_origen`, `cargo`, `monto_destino`, `id_remitente`, `id_destinatario`, `id_tasa_cambio`) VALUES (:amountSent, :charge, :amountReceived, :idRemitente, :idDestinatario, :idTasaCambio)", [ ':amountSent'=>$tran['amountSent'], ':charge'=>$tran['charge'], ':amountReceived'=>$tran['amountReceived'], ':idRemitente'=>$senderId, ':idDestinatario'=>$receiverId,':idTasaCambio'=>$tran['exchangeRate'] ]);
+
+					if ($query->rowCount() > 0) {
+						$respuesta = array('response' => ['code' => 'OK', 'message' => 'Los datos fueron guardados de manera exitosa']);
+					}
 				}
 			}
 
+			return $respuesta;
 		}
 	}
 
@@ -71,11 +86,17 @@
 				$result = $db->getBancos($_GET['idPais']);
 				break;
 
+			case 'getCurrency':
+				$result = $db->getCurrency();
+				break;
+
 			case 'guardarTransaccion':
 				$result = $db->guardarTransaccion($_GET['data']);
 				//var_dump($result);
 				break;
 
+			case 'getExchange':
+				$result = $db->getExchange($_GET['idCurrency']);
 			default:
 				# code...
 				break;

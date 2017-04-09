@@ -5,10 +5,12 @@
 
 	<script type="text/javascript" src="scripts/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+	<script type="text/javascript" src="scripts/toastr.min.js"></script>
 	<script type="text/javascript" src="scripts/galipan.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/toastr.min.css">
 	<link rel="stylesheet" type="text/css" href="css/galipan.css">
 </head>
 <body>
@@ -29,141 +31,167 @@
 				</div>
 			</div>
 		</nav>
-		<div class="form-horizontal">
-			<div class="panel panel-default panel-primary">
-				<div class="panel-heading">
-				    <h3 class="panel-title">Datos del Remitente</h3>
-			  	</div>
-				<div class="panel-body">
-					<div class="form-group">
-						<div class="col-md-4">
-							<label for="senderFirstName">Nombres</label>
-	    					<input type="text" class="form-control" id="senderFirstName" placeholder="">
+		<div class="row">
+			<div class="col-md-8">				
+				<div class="form-horizontal">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Datos del Remitente</h3>
 						</div>
-						<div  class="col-md-4">
-	    					<label for="senderLastName">Apellidos</label>
-	    					<input type="text" class="form-control" id="senderLastName" placeholder="">
-    					</div>
-    					<div  class="col-md-4">
-	    					<label for="senderIdNumber">Nro. Documento de Identidad</label>
-	    					<input type="text" class="form-control" id="senderIdNumber" placeholder="">
-    					</div>
-					</div>	
-					<div class="form-group">
-						<div class="col-md-4">
-							<label for="senderPhone">Tel&eacute;fono</label>
-	    					<input type="text" class="form-control" id="senderPhone" placeholder="">
+						<div class="panel-body">
+							<div class="form-group">
+								<div class="col-md-4">
+									<label for="senderFirstName">Nombres</label>
+									<input type="text" class="form-control" id="senderFirstName" placeholder="">
+								</div>
+								<div  class="col-md-4">
+									<label for="senderLastName">Apellidos</label>
+									<input type="text" class="form-control" id="senderLastName" placeholder="">
+								</div>
+								<div  class="col-md-4">
+									<label for="senderIdNumber">Nro. Documento de Identidad</label>
+									<input type="text" class="form-control" id="senderIdNumber" placeholder="">
+								</div>
+							</div>	
+							<div class="form-group">
+								<div class="col-md-4">
+									<label for="senderPhone">Tel&eacute;fono</label>
+									<input type="text" class="form-control" id="senderPhone" placeholder="">
+								</div>
+								<div  class="col-md-4">
+									<label for="senderCountry">Pa&iacute;s</label>
+									<select class="form-control" id="senderCountry"></select>
+								</div>
+								<div  class="col-md-4">
+									<label for="senderState">Estado</label>
+									<select class="form-control" id="senderState"></select>
+								</div>
+							</div>
+							<div class="form-group">
+								<div  class="col-md-4">
+									<label for="senderCity">Ciudad</label>
+									<select class="form-control" id="senderCity"></select>
+								</div>
+								<div class="col-md-8">
+									<label for="senderAddress">Direcci&oacute;n</label>
+									<input type="text" class="form-control" id="senderAddress" placeholder="">
+								</div>						
+							</div>
+							<div class="form-group">
+								<div  class="col-md-4">
+									<label for="senderBank">Banco Or&iacute;gen</label>
+									<select class="form-control" id="senderBank"></select>
+								</div>
+								<div class="col-md-4">
+									<label for="senderTransferNumber">Nro. de Transferencia</label>
+									<input type="text" class="form-control" id="senderTransferNumber" placeholder="">
+								</div>
+							</div>
 						</div>
-						<div  class="col-md-4">
-	    					<label for="senderCountry">Pa&iacute;s</label>
-	    					<select class="form-control" id="senderCountry"></select>
-    					</div>
-    					<div  class="col-md-4">
-	    					<label for="senderState">Estado</label>
-	    					<select class="form-control" id="senderState"></select>
-    					</div>
 					</div>
-					<div class="form-group">
-						<div  class="col-md-4">
-	    					<label for="senderCity">Ciudad</label>
-	    					<select class="form-control" id="senderCity"></select>
-    					</div>
-						<div class="col-md-8">
-							<label for="senderAddress">Direcci&oacute;n</label>
-	    					<input type="text" class="form-control" id="senderAddress" placeholder="">
-						</div>						
-					</div>
-				</div>
-			</div>
 
-			<div class="panel panel-default panel-primary">
-				<div class="panel-heading">
-				    <h3 class="panel-title">Datos del Beneficiario</h3>
-			  	</div>
-				<div class="panel-body">
-					<div class="form-group">
-						<div class="col-md-4">
-							<label for="receiverFirstName">Nombres</label>
-	    					<input type="text" class="form-control" id="receiverFirstName" placeholder="">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Datos del Beneficiario</h3>
 						</div>
-						<div  class="col-md-4">
-	    					<label for="receiverLastName">Apellidos</label>
-	    					<input type="text" class="form-control" id="receiverLastName" placeholder="">
-    					</div>
-    					<div  class="col-md-4">
-	    					<label for="receiverIdNumber">Nro. Documento de Identidad</label>
-	    					<input type="text" class="form-control" id="receiverIdNumber" placeholder="">
-    					</div>
-					</div>	
-					<div class="form-group">
-						<div class="col-md-4">
-							<label for="receiverPhone">Tel&eacute;fono</label>
-	    					<input type="text" class="form-control" id="receiverPhone" placeholder="">
-						</div>
-						<div  class="col-md-4">
-	    					<label for="receiverCountry">Pa&iacute;s</label>
-	    					<select class="form-control" id="receiverCountry"></select>
-    					</div>
-    					<div  class="col-md-4">
-	    					<label for="receiverState">Estado</label>
-	    					<select class="form-control" id="receiverState"></select>
-    					</div>
-					</div>
-					<div class="form-group">
-						<div  class="col-md-4">
-	    					<label for="receiverCity">Ciudad</label>
-	    					<select class="form-control" id="receiverCity"></select>
-    					</div>
-						<div class="col-md-8">
-							<label for="receiverAddress">Direcci&oacute;n</label>
-	    					<input type="text" class="form-control" id="receiverAddress" placeholder="">
-						</div>						
-					</div>
-				</div>
-			</div>
-
-			<div class="panel panel-default panel-primary">
-				<div class="panel-heading">
-				    <h3 class="panel-title">Datos de la Transacci&oacute;n</h3>
-			  	</div>
-				<div class="panel-body">					
-					<div class="form-group">						
-						<div  class="col-md-4">
-	    					<label for="senderBank">Banco Or&iacute;gen</label>
-	    					<select class="form-control" id="senderBank"></select>
-    					</div>
-    					<div class="col-md-4">
-							<label for="senderTransferNumber">Nro. de Transferencia</label>
-	    					<input type="text" class="form-control" id="senderTransferNumber" placeholder="">
-						</div>
-						<div class="col-md-4">
-							<label for="tranxAmountSent">Monto enviado</label>
-	    					<input type="text" class="form-control" id="tranxAmountSent" placeholder="">
-						</div>
-					</div>
-					<div class="form-group">						
-						<div  class="col-md-4">
-	    					<label for="receiverBank">Banco Destino</label>
-	    					<select class="form-control" id="receiverBank"></select>
-    					</div>
-    					<div class="col-md-4">
-							<label for="receiverAccountNumber">Nro. de Cuenta</label>
-	    					<input type="text" class="form-control" id="receiverAccountNumber" placeholder="">
-						</div>
-						<div class="col-md-4">
-							<label for="tranxAmountReceived">Monto a recibir</label>
-	    					<input type="text" class="form-control" id="tranxAmountReceived" placeholder="">
+						<div class="panel-body">
+							<div class="form-group">
+								<div class="col-md-4">
+									<label for="receiverFirstName">Nombres</label>
+									<input type="text" class="form-control" id="receiverFirstName" placeholder="">
+								</div>
+								<div  class="col-md-4">
+									<label for="receiverLastName">Apellidos</label>
+									<input type="text" class="form-control" id="receiverLastName" placeholder="">
+								</div>
+								<div  class="col-md-4">
+									<label for="receiverIdNumber">Nro. Documento de Identidad</label>
+									<input type="text" class="form-control" id="receiverIdNumber" placeholder="">
+								</div>
+							</div>	
+							<div class="form-group">
+								<div class="col-md-4">
+									<label for="receiverPhone">Tel&eacute;fono</label>
+									<input type="text" class="form-control" id="receiverPhone" placeholder="">
+								</div>
+								<div  class="col-md-4">
+									<label for="receiverCountry">Pa&iacute;s</label>
+									<select class="form-control" id="receiverCountry"></select>
+								</div>
+								<div  class="col-md-4">
+									<label for="receiverState">Estado</label>
+									<select class="form-control" id="receiverState"></select>
+								</div>
+							</div>
+							<div class="form-group">
+								<div  class="col-md-4">
+									<label for="receiverCity">Ciudad</label>
+									<select class="form-control" id="receiverCity"></select>
+								</div>
+								<div class="col-md-8">
+									<label for="receiverAddress">Direcci&oacute;n</label>
+									<input type="text" class="form-control" id="receiverAddress" placeholder="">
+								</div>						
+							</div>
+							<div class="form-group">
+								<div  class="col-md-4">
+									<label for="receiverBank">Banco Destino</label>
+									<select class="form-control" id="receiverBank"></select>
+								</div>
+								<div class="col-md-4">
+									<label for="receiverAccountNumber">Nro. de Cuenta</label>
+									<input type="text" class="form-control" id="receiverAccountNumber" placeholder="">
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="col-md-4">
+				<div class="form-horizontal">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Datos de la Transacci&oacute;n</h3>
+						</div>
+						<div class="panel-body">		
+							<div class="container-fluid">			
+								<div class="form-group">
+									<label for="tranxAmountSent">Monto enviado (&euro;)</label>
+									<input type="text" class="form-control" id="tranxAmountSent" placeholder="">
+								</div>								
+								<div class="form-group">
+									<label for="tranxCharge">Cargo</label>
+									<input type="text" class="form-control" id="tranxCharge" placeholder="">
+								</div>
+								<div class="form-group">
+									<label for="tranxTotal">Total a pagar</label>
+									<input type="text" class="form-control" id="tranxTotal" placeholder="" disabled>
+								</div>
+								<div class="form-group">
+									<label for="tranxCurrency">Moneda destino</label>
+									<select class="form-control" id="tranxCurrency" placeholder=""></select>
+								</div>
+								<div class="form-group">
+									<label for="tranxExchange">Tasa de cambio</label>
+									<input type="text" class="form-control" id="tranxExchange" placeholder="" disabled>
+									<input type="hidden" id="idExchange">
+								</div>
+								<div class="form-group">								
+									<label for="tranxAmountReceived">Monto a recibir</label>
+									<input type="text" class="form-control" id="tranxAmountReceived" placeholder="" disabled>
+								</div>
 
-			<div class="container text-center">
-				<button id="btnGuadrar" class="btn btn-success btn-lg">Guardar remesa</button>
-				<button class="btn btn-default btn-lg">Cancelar</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<br>
 		</div>
-	</div>		
+		<div class="container text-center">
+			<button id="btnGuadrar" class="btn btn-success btn-lg">Guardar remesa</button>
+			<button class="btn btn-warning btn-lg" onclick="limpiarCampos()">Cancelar</button>
+		</div>
+		<br>	
+	</div>			
 </body>
 </html>

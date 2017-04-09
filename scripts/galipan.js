@@ -1,3 +1,9 @@
+//Limpia los campos de la ventana
+var limpiarCampos = function(){
+	$("input").val('');
+	$("select").prop('selectedIndex',0);
+};
+
 $(document).ready(function() {
 	//Carga automáticamente la lista de paises
 	$(function() {
@@ -75,6 +81,43 @@ $(document).ready(function() {
 		});
 	};
 
+	//Carga los tipos de monedas
+	$(function(){
+		var select = $("#tranxCurrency");
+		
+		$.ajax({
+			url: "Galipan.php",
+			dataType: 'json',
+			data: { "option": "getCurrency" }
+		}).done(function(result) {
+			select.append($('<option />').text('Seleccione...'));
+
+			$.each(result, function(i, moneda){
+				select.append($('<option />').text(moneda.nombre + ' (' + moneda.codigo + ')').val(moneda.id_moneda));
+			});
+		});
+	});
+
+	//Obtiene la tasa se cambio segun la moneda seleccionada y calcula el monto a recibir
+	$("#tranxCurrency").on('change', function(){
+		$.ajax({
+			url: "Galipan.php",
+			dataType: 'json',
+			data: { "option": "getExchange", "idCurrency": $(this).val() }
+		}).done(function(result) {
+			var rate = result[0];
+			$("#tranxExchange").val(rate.monto);
+			$("#idExchange").val(rate.id_tasa);
+			$("#tranxAmountReceived").val(parseFloat($("#tranxAmountSent").val()) * parseFloat($("#tranxExchange").val()));
+		});
+	});
+
+	//Calcula la cantitad total a pagar por parte de quien envia el dinero
+	$("#tranxCharge").on('change', function(){
+		$("#tranxTotal").val(parseFloat($("#tranxAmountSent").val()) + parseFloat($(this).val()));
+	});
+
+	//Guarda la transaccion
 	$("#btnGuadrar").on('click', function() {
 		var transactionData = {
 			'remitente': {
@@ -99,11 +142,11 @@ $(document).ready(function() {
 			},
 			'transaccion': {
 				'amountSent': $("#tranxAmountSent").val(),
+				'charge': $("#tranxCharge").val(),
+				'exchangeRate': $("#idExchange").val(),
 				'amountReceived': $("#tranxAmountReceived").val()
 			}
 		};
-	
-		//console.log(transactionData);
 
 		$.ajax({
 			url: "Galipan.php",
@@ -111,7 +154,27 @@ $(document).ready(function() {
 			data: { "option": "guardarTransaccion", 'data': transactionData}
 		}).done(function(result) {
 			console.log(result);
+			toastr["success"](result.response.message);
+			limpiarCampos();
 		});
 	});
 
+
+	toastr.options = {
+		"closeButton": false,
+		"debug": false,
+		"newestOnTop": false,
+		"progressBar": false,
+		"positionClass": "toast-bottom-right",
+		"preventDuplicates": false,
+		"onclick": null,
+		"showDuration": "300",
+		"hideDuration": "1000",
+		"timeOut": "5000",
+		"extendedTimeOut": "1000",
+		"showEasing": "swing",
+		"hideEasing": "linear",
+		"showMethod": "fadeIn",
+		"hideMethod": "fadeOut"
+	}
 });	
