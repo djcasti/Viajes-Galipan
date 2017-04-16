@@ -34,10 +34,6 @@
 		}
 
 		public function guardarTransaccion($data) {
-		// 	var_dump($data['remitente']);
-		// 	var_dump($data['destinatario']);
-		// 	var_dump($data['transaccion']);
-
 			$rem = $data['remitente'];
 			$des = $data['destinatario'];
 			$tran = $data['transaccion'];
@@ -55,7 +51,9 @@
 					$query = $this->queryList("INSERT INTO `transaccion` (`monto_origen`, `cargo`, `monto_destino`, `id_remitente`, `id_destinatario`, `id_tasa_cambio`) VALUES (:amountSent, :charge, :amountReceived, :idRemitente, :idDestinatario, :idTasaCambio)", [ ':amountSent'=>$tran['amountSent'], ':charge'=>$tran['charge'], ':amountReceived'=>$tran['amountReceived'], ':idRemitente'=>$senderId, ':idDestinatario'=>$receiverId,':idTasaCambio'=>$tran['exchangeRate'] ]);
 
 					if ($query->rowCount() > 0) {
-						$respuesta = array('response' => ['code' => 'OK', 'message' => 'Los datos fueron guardados de manera exitosa']);
+						$transactionId = $this->connection->lastInsertId();
+						$respuesta = array('response' => ['code' => 'OK', 'message' => 'Los datos fueron guardados de manera exitosa'],
+										   'data' => ['tranxId' => $transactionId]);
 					}
 				}
 			}

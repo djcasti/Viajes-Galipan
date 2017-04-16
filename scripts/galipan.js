@@ -155,6 +155,42 @@ $(document).ready(function() {
 		}).done(function(result) {
 			console.log(result);
 			toastr["success"](result.response.message);
+			
+			//Se carga la información en el recibo
+			//Datos de la transaccion
+			$("#reciboNroOrden").text(result.data.tranxId);
+			$("#reciboCantEuro").text(transactionData.transaccion.amountSent);
+			$("#reciboTasaCambio").text($("#tranxExchange option:selected").text());
+			$("#reciboCargo").text(transactionData.transaccion.charge);
+			$("#reciboTotal").text($("#tranxTotal").val());
+			$("#reciboMoneda").text($("#tranxCurrency option:selected").text());
+			$("#reciboCantEntrega").text(transactionData.transaccion.amountReceived);
+			
+			//Datos del remitente
+			$("#reciboIdRemitente").text(transactionData.remitente.idNumber);
+			$("#reciboNombreRemitente").text(transactionData.remitente.fisrtName);
+			$("#reciboApellidoRemitente").text(transactionData.remitente.lastName);
+			$("#reciboTelefRemitente").text(transactionData.remitente.phone);
+			$("#reciboPaisRemitente").text($("#senderCountry option:selected").text());
+			$("#reciboCiudadRemitente").text($("#senderCity option:selected").text());
+			$("#reciboDireccionRemitente").text(transactionData.remitente.address);
+			//$("#reciboConceptoRemitente").text();
+
+			//Datos del beneficiario
+			$("#reciboIdDestinatario").text(transactionData.destinatario.idNumber);
+			$("#reciboNombreDestinatario").text(transactionData.destinatario.fisrtName);
+			$("#reciboApellidoDestinatario").text(transactionData.destinatario.lastName);
+			$("#reciboTelefDestinatario").text(transactionData.destinatario.phone);
+			$("#reciboPaisDestinatario").text($("#receiverCountry option:selected").text());
+			$("#reciboCiudadDestinatario").text($("#receiverCity option:selected").text());
+			$("#reciboBancoDestinatario").text($("#receiverBank option:selected").text());
+			$("#reciboCuentaDestinatario").text(transactionData.destinatario.accountNumber);
+
+			//Se muestra el recibo
+			$("#modalRecibo").modal({
+				keyboard: false
+			});
+
 			limpiarCampos();
 		});
 	});

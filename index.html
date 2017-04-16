@@ -176,7 +176,7 @@
 									<input type="text" class="form-control" id="tranxExchange" placeholder="" disabled>
 									<input type="hidden" id="idExchange">
 								</div>
-								<div class="form-group">								
+								<div class="form-group">						
 									<label for="tranxAmountReceived">Monto a recibir</label>
 									<input type="text" class="form-control" id="tranxAmountReceived" placeholder="" disabled>
 								</div>
@@ -192,6 +192,122 @@
 			<button class="btn btn-warning btn-lg" onclick="limpiarCampos()">Cancelar</button>
 		</div>
 		<br>	
-	</div>			
+	</div>	
+
+	<div id="modalRecibo" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Recibo de la operaci&oacute;n</h4>
+				</div>
+				<div class="modal-body">
+					<div id="recibo">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-md-4">
+										<div class="logo" style="width: 140px; height: 80px;"></div>
+										<address class="small">Av. Santa Cruz, 66, 38611 San Isidro,<br> Santa Cruz de Tenerife,<br> Espa&ntilde;a</address>
+										<div class="small">Fecha: <span id="fecha">15/04/2017</span></div>
+									</div>
+									<div class="col-md-2"></div>
+									<div class="col-md-6">
+										<div class="small"><strong>Nro. Orden: </strong><span id="reciboNroOrden"></span></div>
+										<div class="panel panel-default">
+											<div class="panel-body">
+												<div class="small"><strong>Cantidad &euro;: </strong><span id="reciboCantEuro"></span></div>
+												<div class="small"><strong>Tasa de cambio: </strong><span id="reciboTasaCambio"></span></div>
+												<div class="small"><strong>Cargo: </strong><span id="reciboCargo"></span></div>
+												<div class="small"><strong>Total: </strong><span id="reciboTotal"></span></div>
+												<div class="small"><strong>Moneda destino: </strong><span id="reciboMoneda"></span></div>
+												<div class="small"><strong>Cantidad a entregar: </strong><span id="reciboCantEntrega"></span></div>
+											</div>
+										</div>						
+									</div>
+								</div>
+							</div>
+						</div>
+						<h3 class="small"><strong>DATOS DEL REMITENTE</strong></h3>
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-md-4">
+										<div class="small"><strong>Nro. Documento Identidad: </strong><span id="reciboIdRemitente"></span></div>
+									</div>
+									<div class="col-md-4">
+										<div class="small"><strong>Nombres: </strong><span id="reciboNombreRemitente"></span></div>
+									</div>
+									<div class="col-md-4">
+										<div class="small"><strong>Apellidos: </strong><span id="reciboApellidoRemitente"></span></div>			
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-4">
+										<div class="small"><strong>Tel&eacute;fono: </strong><span id="reciboTelefRemitente"></span></div>
+									</div>
+									<div class="col-md-4">
+										<div class="small"><strong>Pa&iacute;s: </strong><span id="reciboPaisRemitente"></span></div>
+									</div>
+									<div class="col-md-4">
+										<div class="small"><strong>Ciudad: </strong><span id="reciboCiudadRemitente"></span></div>			
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="small"><strong>Direcci&oacute;n: </strong><span id="reciboDireccionRemitente"></span></div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="small"><strong>Concepto: </strong><span id="reciboConceptoRemitente"></span></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<h3 class="small"><strong>DATOS DEL BENEFICIARIO</strong></h3>
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-md-4">
+										<div class="small"><strong>Nro. Documento Identidad: </strong><span id="reciboIdDestinatario"></span></div>
+									</div>
+									<div class="col-md-4">
+										<div class="small"><strong>Nombres: </strong><span id="reciboNombreDestinatario"></span></div>
+									</div>
+									<div class="col-md-4">
+										<div class="small"><strong>Apellidos: </strong><span id="reciboApellidoDestinatario"></span></div>			
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-4">
+										<div class="small"><strong>Tel&eacute;fono: </strong><span id="reciboTelefDestinatario"></span></div>
+									</div>
+									<div class="col-md-4">
+										<div class="small"><strong>Pa&iacute;s: </strong><span id="reciboPaisDestinatario"></span></div>
+									</div>
+									<div class="col-md-4">
+										<div class="small"><strong>Ciudad: </strong><span id="reciboCiudadDestinatario"></span></div>			
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-4">
+										<div class="small"><strong>Banco: </strong><span id="reciboBancoDestinatario"></span></div>
+									</div>
+									<div class="col-md-4">
+										<div class="small"><strong>Nro. de Cuenta: </strong><span id="reciboCuentaDestinatario"></span></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary">Imprimir</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->	
 </body>
 </html>
