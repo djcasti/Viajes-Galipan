@@ -24,12 +24,12 @@
 		}
 
 		public function getCurrency() {
-			$query = $this->queryList("SELECT id_moneda, nombre, codigo FROM moneda", []);	
+			$query = $this->queryList("SELECT id_moneda, nombre, codigo, simbolo FROM moneda", []);	
 			return $query->fetchAll(PDO::FETCH_ASSOC);			
 		}
 
 		public function getExchange($idCurrency) {
-			$query = $this->queryList("SELECT id_tasa, monto FROM tasa_cambio where id_moneda = :idCurrency", [':idCurrency' => $idCurrency]);	
+			$query = $this->queryList("SELECT t.id_tasa, t.monto, m.simbolo FROM tasa_cambio t INNER JOIN moneda m ON (t.id_moneda = m.id_moneda) WHERE t.id_moneda = :idCurrency", [':idCurrency' => $idCurrency]);	
 			return $query->fetchAll(PDO::FETCH_ASSOC);			
 		}
 

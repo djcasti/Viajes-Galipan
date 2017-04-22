@@ -106,9 +106,11 @@ $(document).ready(function() {
 			data: { "option": "getExchange", "idCurrency": $(this).val() }
 		}).done(function(result) {
 			var rate = result[0];
+			console.log(rate);
 			$("#tranxExchange").val(rate.monto);
 			$("#idExchange").val(rate.id_tasa);
 			$("#tranxAmountReceived").val(parseFloat($("#tranxAmountSent").val()) * parseFloat($("#tranxExchange").val()));
+			$("span[name=monedaDestino]").html(rate.simbolo);
 		});
 	});
 
@@ -119,6 +121,8 @@ $(document).ready(function() {
 
 	//Guarda la transaccion
 	$("#btnGuadrar").on('click', function() {
+		var $btn = $(this).button('loading');
+
 		var transactionData = {
 			'remitente': {
 				'fisrtName': $("#senderFirstName").val(),
@@ -153,18 +157,20 @@ $(document).ready(function() {
 			dataType: 'json',
 			data: { "option": "guardarTransaccion", 'data': transactionData}
 		}).done(function(result) {
-			console.log(result);
+			$btn.button('reset');
 			toastr["success"](result.response.message);
 			
 			//Se carga la información en el recibo
+			$("#fechaRecibo").text(moment().format("DD/MM/YYYY"));
+
 			//Datos de la transaccion
 			$("#reciboNroOrden").text(result.data.tranxId);
-			$("#reciboCantEuro").text(transactionData.transaccion.amountSent);
-			$("#reciboTasaCambio").text($("#tranxExchange option:selected").text());
-			$("#reciboCargo").text(transactionData.transaccion.charge);
-			$("#reciboTotal").text($("#tranxTotal").val());
+			$("#reciboCantEuro").text($("#simboloMontoEnviado").text() + ' ' + transactionData.transaccion.amountSent);
+			$("#reciboTasaCambio").text($("#simboloTasaCambio").text() + ' ' + $("#tranxExchange").val());
+			$("#reciboCargo").text($("#simboloMontoEnviado").text() + ' ' + transactionData.transaccion.charge);
+			$("#reciboTotal").text($("#simboloMontoEnviado").text() + ' ' + $("#tranxTotal").val());
 			$("#reciboMoneda").text($("#tranxCurrency option:selected").text());
-			$("#reciboCantEntrega").text(transactionData.transaccion.amountReceived);
+			$("#reciboCantEntrega").text($("#simboloTasaCambio").text() + ' ' + transactionData.transaccion.amountReceived);
 			
 			//Datos del remitente
 			$("#reciboIdRemitente").text(transactionData.remitente.idNumber);
@@ -191,7 +197,10 @@ $(document).ready(function() {
 				keyboard: false
 			});
 
-			limpiarCampos();
+			//Se limpia el formulario al cerrar el recibo
+			$('#modalRecibo').on('hide.bs.modal', function (e) {
+				limpiarCampos();
+			});			
 		});
 	});
 
